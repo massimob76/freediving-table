@@ -1,0 +1,26 @@
+{
+  "name": "freediving-table",
+  "version": "0.0.0",
+  "description": "A freediving table app",
+  "main": "countdown.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/massimob76/freediving-table.git"
+  },
+  "keywords": [
+    "freediving",
+    "table"
+  ],
+  "author": "massimob76",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/massimob76/freediving-table/issues"
+  },
+  "homepage": "https://github.com/massimob76/freediving-table",
+  "dependencies": {
+    "http-server": "^0.6.1"
+  }
+}
