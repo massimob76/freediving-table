@@ -17,38 +17,34 @@ var TimeManager = {
 
     this.personalBest = personalBest;
     this.timeSpan = timeSpan;
+    this.totalTime = timeSpan.reduce(function(previous, current) {
+      return previous + current;
+    });
     this.index = 0;
   },
 
   shift: function() {
-    if (this.index == this.timeSpan.length) return null;
-    return this.timeSpan[this.index++];
+    var current = this.peek();
+    if (this.index != this.timeSpan.length) this.index++;
+    return current;
   },
 
   peek: function() {
-    if (this.index == this.timeSpan.length) return null;
-    return this.timeSpan[this.index];
+    return (this.index == this.timeSpan.length) ?
+      { time: 0, remaining: 0, total: 1195, status: "done" } :
+      { time:      this.timeSpan[this.index],
+        remaining: this._remainingTime(),
+        total:     this.totalTime,
+        status:    (this.index % 2 == 0) ? "rest" : "hold"
+      };
   },
 
-  status: function() {
-    if (this.index == this.timeSpan.length) return "done";
-    return (this.index % 2 == 0) ? "rest" : "hold";
-  },
-
-  remainingTime: function() {
+  _remainingTime: function() {
     var remaining = 0;
     for (var i = this.index; i < this.timeSpan.length; i++) {
       remaining += this.timeSpan[i];
     }
     return remaining;
-  },
-
-  totalTime: function() {
-    return this.timeSpan.reduce(function(previous, current) {
-      return previous + current;
-    });
   }
-
-
 
 }

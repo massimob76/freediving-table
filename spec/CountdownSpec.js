@@ -8,7 +8,7 @@ describe("Countdown", function() {
     jasmine.clock().uninstall();
   });
 
-  it("should not call the any method that doesn't exist", function() {
+  it("should not call any method that doesn't exist", function() {
     function Action() {};
     action = new Action();
 
