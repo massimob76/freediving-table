@@ -1,7 +1,7 @@
-function Table(personalBest, phaseRemainingTimeEl, totalRemainingTimeEl) {
+function Table(personalBest, partialTimeEl, totalTimeEl) {
   this.personalBest = personalBest;
-  this.phaseRemainingTimeEl = phaseRemainingTimeEl;
-  this.totalRemainingTimeEl = totalRemainingTimeEl;
+  this.partialTimeEl = partialTimeEl;
+  this.totalTimeEl = totalTimeEl;
 }
 
 Table.start = function() {
@@ -12,6 +12,11 @@ Table.start = function() {
   var remaining = next.remaining;
   var status = next.status;
 
-  new Countdown(timeout, action, noticePeriod);
+  var timeOffset = remaining - time;
+
+  var noticePeriod = 8;
+
+  var action = new RestAction(this.partialTimeEl, this.totalTimeEl, timeOffset)
+  new Countdown(time, action, noticePeriod);
 
 }

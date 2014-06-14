@@ -24,15 +24,15 @@ TimeManager.prototype.shift = function() {
 
 TimeManager.prototype.peek = function() {
   return (this.index == this.timeSpan.length) ?
-    { time: 0, remaining: 0, total: 1195, status: "done" } :
-  { time:      this.timeSpan[this.index],
-   remaining: this._remainingTime(),
-   total:     this.totalTime,
-   status:    (this.index % 2 == 0) ? "rest" : "hold"
+    { partial: 0, total: 0, stage: "N/A", status: "done" } :
+  { partial: this.timeSpan[this.index],
+   total:    this._totalRemaining(),
+   stage:    this.index + 1,
+   status:   (this.index % 2 == 0) ? "rest" : "hold"
   };
 };
 
-TimeManager.prototype._remainingTime = function() {
+TimeManager.prototype._totalRemaining = function() {
   var remaining = 0;
   for (var i = this.index; i < this.timeSpan.length; i++) {
     remaining += this.timeSpan[i];
