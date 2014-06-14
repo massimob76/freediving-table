@@ -1,4 +1,0 @@
-describe ("RestAction", function() {
-
-  it("")
-})

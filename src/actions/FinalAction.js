@@ -1,14 +1,7 @@
-function FinalAction(partialTickEl, totalTickEl) {
-  this.partialTickEl = partialTickEl;
-  this.totalTickEl = totalTickEl;
-  this.timeoutSound = new Audio("/src/resources/RoosterCrow.mp3");
+function FinalAction(partialTickEl, totalTickEl, totalTimeOffset, callback) {
+  Action.call(this, partialTickEl, totalTickEl, totalTimeOffset, callback);
+  this.timeoutSound = new Audio("resources/RoosterCrow.mp3");
 }
 
-HoldAction.prototype.tick = function(value) {
-  this.partialTickEl.text(value);
-  this.totalTickEl.text(value);
-}
-
-HoldAction.prototype.timeout = function() {
-  this.timeoutSound.play();
-}
+FinalAction.prototype = Object.create(Action.prototype);
+FinalAction.prototype.constructor = HoldAction;

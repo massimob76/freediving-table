@@ -1,19 +1,11 @@
-function RestAction(partialTickEl, totalTickEl, totalTimeOffset) {
-  this.partialTickEl = partialTickEl;
-  this.totalTickEl = totalTickEl;
-  this.totalTimeOffset = totalTimeOffset;
-  this.timeoutSound = new Audio("TempleBell.mp3");
-  this.noticeSound = new Audio("AlarmClock.mp3");
+function RestAction(partialTickEl, totalTickEl, totalTimeOffset, callback) {
+  Action.call(this, partialTickEl, totalTickEl, totalTimeOffset, callback);
+  this.timeoutSound = new Audio("resources/TempleBell.mp3");
+  this.noticeSound = new Audio("resources/AlarmClock.mp3");
 }
 
-RestAction.prototype.tick = function(value) {
-  this.partialTickEl.text(value);
-  this.totalTickEl.text(value + this.totalTimeOffset);
-}
-
-RestAction.prototype.timeout = function() {
-  this.timeoutSound.play();
-}
+RestAction.prototype = Object.create(Action.prototype);
+RestAction.prototype.constructor = RestAction;
 
 RestAction.prototype.notice = function() {
   this.noticeSound.play();
