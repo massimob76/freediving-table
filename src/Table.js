@@ -1,7 +1,7 @@
 function Table(personalBest, elements) {
   this.elements = elements;
   this.timeManager = new TimeManager(personalBest);
-  this.noticePeriod = 8;
+  this.noticePeriod = 6;
 }
 
 Table.prototype.start = function() {
@@ -23,11 +23,11 @@ Table.prototype.start = function() {
 Table.prototype._getAction = function(status, timeOffset) {
   switch (status) {
     case "rest":
-      return new RestAction(this.elements.partialTime, this.elements.totalTime, timeOffset, this.start);
+      return new RestAction(this.elements.partialTime, this.elements.totalTime, timeOffset, this);
     case "hold":
       return (this.timeManager.isLastOne()) ?
-        new FinalAction(this.elements.partialTime, this.elements.totalTime, timeOffset, this.start)
-      : new HoldAction(this.elements.partialTime, this.elements.totalTime, timeOffset, this.start);
+        new FinalAction(this.elements.partialTime, this.elements.totalTime, timeOffset, this)
+      : new HoldAction(this.elements.partialTime, this.elements.totalTime, timeOffset, this);
   }
 }
 

@@ -16,26 +16,26 @@ describe("Countdown", function() {
     countdown.start();
 
     // creating spy after countdown has already started
-    Action.prototype.timeOut = jasmine.createSpy("timeOut");
+    Action.prototype.timeout = jasmine.createSpy("timeout");
     jasmine.clock().tick(60001);
-    expect(action.timeOut).not.toHaveBeenCalled();
+    expect(action.timeout).not.toHaveBeenCalled();
 
   });
 
-  it("should call the timeOut method when it times out", function() {
+  it("should call the timeout method when it times out", function() {
     function Action() {};
     action = new Action();
 
-    Action.prototype.timeOut = jasmine.createSpy("timeOut");
+    Action.prototype.timeout = jasmine.createSpy("timeout");
 
     countdown = new Countdown(60, action);
     countdown.start();
 
-    expect(action.timeOut).not.toHaveBeenCalled();
+    expect(action.timeout).not.toHaveBeenCalled();
     jasmine.clock().tick(59999);
-    expect(action.timeOut).not.toHaveBeenCalled();
+    expect(action.timeout).not.toHaveBeenCalled();
     jasmine.clock().tick(2);
-    expect(action.timeOut).toHaveBeenCalled();
+    expect(action.timeout).toHaveBeenCalled();
   });
 
 

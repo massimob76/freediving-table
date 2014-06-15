@@ -3,20 +3,39 @@
 
     <head>
         <title>Freediving tables</title>
-        <script src="jquery-2.1.1.min.js"></script>
-        <script src="countdown.js"></script>
+        <script src="lib/jquery-2.1.1.min.js"></script>
+        <script src="src/TimeManager.js"></script>
+        <script src="src/Countdown.js"></script>
+        <script src="src/actions/Action.js"></script>
+        <script src="src/actions/RestAction.js"></script>
+        <script src="src/actions/HoldAction.js"></script>
+        <script src="src/actions/FinalAction.js"></script>
+        <script src="src/Table.js"></script>
     </head>
 
     <body>
         <h1>Freediving table:</h1>
-        <p>Countdown:
-            <div id="countdown"></div>
+        <p>Partial countdown:
+            <div id="partial"></div>
+        </p>
+        <p>Total countdown:
+            <div id="total"></div>
+        </p>
+        <p>Stage:
+            <div id="stage"></div>
         </p>
         <p>Status:
-            <div id="status">rest</div>
+            <div id="status"></div>
         </p>
         <script type="text/javascript">
-            table.start(166, $('#countdown'), $('#status'));
+            var elements = {
+                partialTime: $('#partial'),
+                totalTime: $('#total'),
+                stage: $('#stage'),
+                status: $('#status')
+            };
+            var table = new Table(16, elements);
+            table.start();
         </script>
     </body>
 

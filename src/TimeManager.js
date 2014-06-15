@@ -1,7 +1,9 @@
 function TimeManager(personalBest) {
   var holdTime  = personalBest / 2,
       timeSpan  = [],
-      REST_TIME = [150, 135, 120, 105, 90, 75, 60, 60];
+      REST_TIME = [15, 13, 12, 10, 9, 7, 6, 6];
+
+  //REST_TIME = [150, 135, 120, 105, 90, 75, 60, 60];
 
   REST_TIME.forEach(function(el) {
     timeSpan.push(el);

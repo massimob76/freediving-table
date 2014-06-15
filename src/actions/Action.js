@@ -12,6 +12,6 @@ Action.prototype.tick = function(value) {
 
 Action.prototype.timeout = function() {
   this.timeoutSound.play();
-  this.callback();
+  this.callback.start();
 }
 
