@@ -32,6 +32,10 @@ TimeManager.prototype.peek = function() {
   };
 };
 
+TimeManager.prototype.isLastOne = function() {
+  return (this.index == this.timeSpan.length);
+}
+
 TimeManager.prototype._totalRemaining = function() {
   var remaining = 0;
   for (var i = this.index; i < this.timeSpan.length; i++) {

@@ -1,35 +1,33 @@
-function Table(personalBest, partialTimeEl, totalTimeEl) {
-  this.personalBest = personalBest;
-  this.partialTimeEl = partialTimeEl;
-  this.totalTimeEl = totalTimeEl;
+function Table(personalBest, elements) {
+  this.elements = elements;
+  this.timeManager = new TimeManager(personalBest);
+  this.noticePeriod = 8;
 }
 
 Table.prototype.start = function() {
-  var noticePeriod = 8;
-  var timeManager = new TimeManager(this.personalBest);
-  var next;
-  do {
-    next = timeManager.shift();
-    var timeOffset = next.total - next.partial;
-    var isLastOne  = _isLastOne(next.stage);
-    var action = this._getAction(next.status, timeOffset, isLastOne);
+  var next = this.timeManager.shift();
 
-    new Countdown(next.partial, action, noticePeriod);
+  if (next.status != "done") {
 
-  } while (next.status != "done");
-}
+    this.elements.stage.text(next.stage);
+    this.elements.status.text(next.text);
 
-Table.prototype._getAction = function(status, timeOffset, isLastOne) {
-  switch (status) {
-    case "rest":
-      return new RestAction(this.partialTimeEl, this.totalTimeEl, timeOffset);
-    case "hold":
-      return (isLastOne) ?
-        new FinalAction(this.partialTimeEl, this.totalTimeEl, timeOffset)
-      : new HoldAction(this.partialTimeEl, this.totalTimeEl, timeOffset);
+    var timeOffset = next.total - next.partial,
+        action     = this._getAction(next.status, timeOffset);
+
+    new Countdown(next.partial, action, this.noticePeriod).start();
+
   }
 }
 
-Table.prototype._isLastOne = function(stage) {
-  return (stage == 16);
+Table.prototype._getAction = function(status, timeOffset) {
+  switch (status) {
+    case "rest":
+      return new RestAction(this.elements.partialTime, this.elements.totalTime, timeOffset, this.start);
+    case "hold":
+      return (this.timeManager.isLastOne()) ?
+        new FinalAction(this.elements.partialTime, this.elements.totalTime, timeOffset, this.start)
+      : new HoldAction(this.elements.partialTime, this.elements.totalTime, timeOffset, this.start);
+  }
 }
+

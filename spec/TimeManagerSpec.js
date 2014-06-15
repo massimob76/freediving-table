@@ -50,6 +50,16 @@ describe ("TimeManager", function() {
     expect(timeManager.peek()).toEqual({ partial:   0, total:    0, stage: "N/A", status: "done" });
   });
 
+  it("should recognise if it is the last stage of the table", function() {
+    expect(timeManager.isLastOne()).toBe(false);
+
+    timeManager.shift();
+    expect(timeManager.isLastOne()).toBe(false);
+
+    while(timeManager.shift().stage != 16);
+    expect(timeManager.isLastOne()).toBe(true);
+  })
+
 
 
 });
