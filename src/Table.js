@@ -1,7 +1,7 @@
 function Table(personalBest, elements) {
   this.elements = elements;
   this.timeManager = new TimeManager(personalBest);
-  this.noticePeriod = 6;
+  this.noticePeriod = 10;
 }
 
 Table.prototype.start = function() {
