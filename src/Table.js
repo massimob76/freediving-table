@@ -1,6 +1,6 @@
-function Table(personalBest, elements) {
+function Table(personalBest, restTime, elements) {
   this.elements = elements;
-  this.timeManager = new TimeManager(personalBest);
+  this.timeManager = new TimeManager(personalBest, restTime);
   this.noticePeriod = 10;
 }
 

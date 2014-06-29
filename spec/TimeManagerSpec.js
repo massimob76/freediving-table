@@ -3,7 +3,7 @@ describe ("TimeManager", function() {
   var timeManager;
 
   beforeEach(function() {
-    timeManager = new TimeManager(100);
+    timeManager = new TimeManager(100, [150, 135, 120, 105, 90, 75, 60, 60]);
   });
 
   it("should be able to create a new freediving table", function() {
