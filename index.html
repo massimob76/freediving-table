@@ -4,6 +4,7 @@
     <head>
         <title>Freediving tables</title>
         <script src="lib/jquery-2.1.1.min.js"></script>
+        <script src="lib/jquery-cookie-1.4.1.min.js"></script>
         <script src="src/TimeManager.js"></script>
         <script src="src/Countdown.js"></script>
         <script src="src/actions/Action.js"></script>
@@ -11,6 +12,7 @@
         <script src="src/actions/HoldAction.js"></script>
         <script src="src/actions/FinalAction.js"></script>
         <script src="src/Table.js"></script>
+        <script src="src/TableConf.js"></script>
     </head>
 
     <body>
@@ -29,13 +31,7 @@
             <div id="status"></div>
         </p>
         <script type="text/javascript">
-            var elements = {
-                partialTime: $('#partial'),
-                totalTime: $('#total'),
-                stage: $('#stage'),
-                status: $('#status')
-            };
-            var table = new Table(200, [150, 135, 120, 105, 90, 75, 60, 60], elements);
+            var table = new Table(TableConf.personalBest(), TableConf.restTime(), TableConf.elements());
             table.start();
         </script>
     </body>
