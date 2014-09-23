@@ -17,7 +17,13 @@
 
     <body>
         <h1>Freediving table:</h1>
-        <button onclick="alert();">START!</button>
+        <p>Personal best:
+            <input id="personalBest" type="text" />
+        </p>
+        <p>Rest:
+            <input id="restTime" type="text"/>
+        </p>
+        <button onclick="alert($('#personalBest').val());">START!</button>
         <p>Partial countdown:
             <div id="partial"></div>
         </p>
@@ -31,6 +37,7 @@
             <div id="status"></div>
         </p>
         <script type="text/javascript">
+            TableConf.load();
             var table = new Table(TableConf.personalBest(), TableConf.restTime(), TableConf.elements());
             table.start();
         </script>

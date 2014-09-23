@@ -3,6 +3,11 @@ function TableConf() {};
 TableConf.defaultPersonalBest = 200;
 TableConf.defaultRestTime = [150, 135, 120, 105, 90, 75, 60, 60];
 
+TableConf.load = function() {
+  $('#personalBest').val(TableConf.personalBest());
+  $('#restTime').val(TableConf.restTime());
+}
+
 TableConf.save = function() {
   $.cookie("personalBest", $('#personalBest').text());
   $.cookie("restTime", $('#restTime').text());

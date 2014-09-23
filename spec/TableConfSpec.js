@@ -1,6 +1,19 @@
 describe("TableConf", function() {
 
-  describe("save", function() {
+  describe("load and save", function() {
+
+    it("should load the current configuration from cookies", function() {
+      var personalBest = "200";
+      var restTime = "[1,2,3]";
+      spyOn($.prototype, "val");
+      spyOn(TableConf, "personalBest").and.returnValue(personalBest);
+      spyOn(TableConf, "restTime").and.returnValue(restTime);
+
+      TableConf.load();
+      expect($.prototype.val).toHaveBeenCalledWith(personalBest);
+      expect($.prototype.val).toHaveBeenCalledWith(restTime);
+
+    });
 
     it("should save the current configuration to cookies", function() {
       var expected = "something";
