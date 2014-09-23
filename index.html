@@ -23,7 +23,7 @@
         <p>Rest:
             <input id="restTime" type="text"/>
         </p>
-        <button onclick="alert($('#personalBest').val());">START!</button>
+        <button onclick="start()">START!</button>
         <p>Partial countdown:
             <div id="partial"></div>
         </p>
@@ -38,8 +38,12 @@
         </p>
         <script type="text/javascript">
             TableConf.load();
-            var table = new Table(TableConf.personalBest(), TableConf.restTime(), TableConf.elements());
-            table.start();
+            function start() {
+                TableConf.save();
+                TableConf.load();
+                var table = new Table(TableConf.personalBest(), TableConf.restTime(), TableConf.elements());
+                table.start();
+            }
         </script>
     </body>
 

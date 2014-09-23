@@ -19,7 +19,7 @@ describe("TableConf", function() {
       var expected = "something";
 
       spyOn($, "cookie");
-      spyOn($, "text").and.returnValue(expected);
+      spyOn($.prototype, "val").and.returnValue(expected);
       TableConf.save();
       expect($.cookie).toHaveBeenCalledWith("personalBest", expected);
       expect($.cookie).toHaveBeenCalledWith("restTime", expected);
@@ -55,10 +55,9 @@ describe("TableConf", function() {
 
 
     it("should get the personal best from the cookie", function() {
-      var expectedRestTime = [150, 135];
-      spyOn($, "cookie").and.returnValue(expectedRestTime);
+      spyOn($, "cookie").and.returnValue("150, 135");
 
-      expect(TableConf.restTime()).toEqual(expectedRestTime);
+      expect(TableConf.restTime()).toEqual([150, 135]);
     });
 
   });

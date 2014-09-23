@@ -9,8 +9,8 @@ TableConf.load = function() {
 }
 
 TableConf.save = function() {
-  $.cookie("personalBest", $('#personalBest').text());
-  $.cookie("restTime", $('#restTime').text());
+  $.cookie("personalBest", $('#personalBest').val());
+  $.cookie("restTime", $('#restTime').val());
 }
 
 TableConf.elements = function() {
@@ -29,6 +29,6 @@ TableConf.personalBest = function() {
 
 TableConf.restTime = function() {
   var restTime = $.cookie("restTime");
-  return restTime ? restTime : TableConf.defaultRestTime;
+  return restTime ? restTime.split(',').map(Number) : TableConf.defaultRestTime;
 }
 
