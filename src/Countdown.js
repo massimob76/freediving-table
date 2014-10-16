@@ -17,8 +17,11 @@ Countdown.prototype.start = function() {
   if (typeof(action.tick)==="function") {
     action.tick(timeLeft--);
     interval = setInterval(function() {
-      if (timeLeft==0) clearInterval(interval);
-      action.tick(timeLeft--);
+      if (timeLeft==0) {
+        clearInterval(interval);
+      } else {
+        action.tick(timeLeft--);
+      }
     }, 1000);
 
   };

@@ -54,9 +54,6 @@ describe("Countdown", function() {
     jasmine.clock().tick(1000);
     expect(action.tick).toHaveBeenCalledWith(1);
 
-    jasmine.clock().tick(1000);
-    expect(action.tick).toHaveBeenCalledWith(0);
-
   });
 
   it("should call the notice method in the notice period before the timeout", function() {

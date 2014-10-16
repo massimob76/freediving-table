@@ -4,13 +4,17 @@ TableConf.defaultPersonalBest = 200;
 TableConf.defaultRestTime = [150, 135, 120, 105, 90, 75, 60, 60];
 
 TableConf.load = function() {
-  $('#personalBest').val(TableConf.personalBest());
-  $('#restTime').val(TableConf.restTime());
+  var personalBestText = TimeHelper.convertSecondsToText(TableConf.personalBest());
+  $('#personalBest').val(personalBestText);
+  var restTimeArrayText = TableConf.restTime().map(TimeHelper.convertSecondsToText);
+  $('#restTime').val(restTimeArrayText);
 }
 
 TableConf.save = function() {
-  $.cookie("personalBest", $('#personalBest').val());
-  $.cookie("restTime", $('#restTime').val());
+  var personalBest = $('#personalBest').val();
+  $.cookie("personalBest", TimeHelper.convertTextToSeconds(personalBest));
+  var restTimeArray = $('#restTime').val().split(',').map(TimeHelper.convertTextToSeconds).join(',');
+  $.cookie("restTime", restTimeArray);
 }
 
 TableConf.elements = function() {

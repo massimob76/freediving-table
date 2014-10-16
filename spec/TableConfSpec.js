@@ -3,15 +3,13 @@ describe("TableConf", function() {
   describe("load and save", function() {
 
     it("should load the current configuration from cookies", function() {
-      var personalBest = "200";
-      var restTime = "[1,2,3]";
       spyOn($.prototype, "val");
-      spyOn(TableConf, "personalBest").and.returnValue(personalBest);
-      spyOn(TableConf, "restTime").and.returnValue(restTime);
+      spyOn(TableConf, "personalBest").and.returnValue(200);
+      spyOn(TableConf, "restTime").and.returnValue([1,2,3]);
 
       TableConf.load();
-      expect($.prototype.val).toHaveBeenCalledWith(personalBest);
-      expect($.prototype.val).toHaveBeenCalledWith(restTime);
+      expect($.prototype.val).toHaveBeenCalledWith("3:20");
+      expect($.prototype.val).toHaveBeenCalledWith(['1','2','3']);
 
     });
 
@@ -19,10 +17,10 @@ describe("TableConf", function() {
       var expected = "something";
 
       spyOn($, "cookie");
-      spyOn($.prototype, "val").and.returnValue(expected);
+      spyOn($.prototype, "val").and.returnValue("123");
       TableConf.save();
-      expect($.cookie).toHaveBeenCalledWith("personalBest", expected);
-      expect($.cookie).toHaveBeenCalledWith("restTime", expected);
+      expect($.cookie).toHaveBeenCalledWith("personalBest", 123);
+      expect($.cookie).toHaveBeenCalledWith("restTime", '123');
     });
 
   });

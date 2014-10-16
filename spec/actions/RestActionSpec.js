@@ -14,8 +14,8 @@ describe ("RestAction", function() {
 
     var action = new RestAction(partialTickEl, totalTickEl, totalTimeOffset, null);
     action.tick(13);
-    expect(partialTickEl.text).toHaveBeenCalledWith(13);
-    expect(totalTickEl.text).toHaveBeenCalledWith(113);
+    expect(partialTickEl.text).toHaveBeenCalledWith('13');
+    expect(totalTickEl.text).toHaveBeenCalledWith('1:53');
   });
 
   it("should call a callback function on timeout", function() {

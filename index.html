@@ -13,6 +13,7 @@
         <script src="src/actions/FinalAction.js"></script>
         <script src="src/Table.js"></script>
         <script src="src/TableConf.js"></script>
+        <script src="src/TimeHelper.js"></script>
     </head>
 
     <body>
@@ -21,7 +22,7 @@
             <input id="personalBest" type="text" />
         </p>
         <p>Rest:
-            <input id="restTime" type="text"/>
+            <input id="restTime" type="text" size="50"/>
         </p>
         <button onclick="start()">START!</button>
         <p>Partial countdown:
@@ -40,7 +41,6 @@
             TableConf.load();
             function start() {
                 TableConf.save();
-                TableConf.load();
                 var table = new Table(TableConf.personalBest(), TableConf.restTime(), TableConf.elements());
                 table.start();
             }
